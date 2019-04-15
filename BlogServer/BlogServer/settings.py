@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BlogArticle'
+    'rest_framework',
+    'ServerAPI'
 ]
 
 MIDDLEWARE = [
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'BlogServer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '*****',
-        'USER': '*****',
-        'PASSWORD': '*******',
-        'HOST': '127.0.0.1',
+        'NAME': 'candy',
+        'USER': 'cnj',
+        'PASSWORD': 'candy',
+        'HOST': '127.0.0.1'
     }
 }
 
@@ -105,6 +106,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

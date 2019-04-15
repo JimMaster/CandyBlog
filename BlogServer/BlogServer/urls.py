@@ -16,9 +16,22 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
-import BlogArticle.urls
+from django.conf.urls import url, include
+from django.contrib.auth.models import User
+from rest_framework import routers
+from ServerAPI.urls import route
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/BlogArticle', include(BlogArticle.urls)),
+    # url(r'^api/BlogArticle', include(ServerAPI.urls)),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
+    url(r'^', include(router.urls)),
 ]
+
+urlpatterns = urlpatterns + route
